@@ -7,7 +7,7 @@ type MeuComponenteProps = {
 
 const Quiz: React.FC<MeuComponenteProps> = ({ questions }) => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
-  const [respostaId, setRespostaId] = useState<string>();
+  const [respostaId, setRespostaId] = useState<number | string>();
   const [resposta, setResposta] = useState<boolean>(false);
   const [result, setResult] = useState<Result>(resultInitialState);
   const [showResult, setShowResult] = useState<boolean>(false);
@@ -15,8 +15,8 @@ const Quiz: React.FC<MeuComponenteProps> = ({ questions }) => {
   const { id, questao, alternativas, respostaCorreta } =
     questions[currentQuestion];
 
-  const handleClick = (resposta: string, index: number) => {
-    setRespostaId(index);
+  const handleClick = (resposta: string, id: number | string) => {
+    setRespostaId(id);
     if (resposta === respostaCorreta) {
       setResposta(true);
     } else {
@@ -59,15 +59,17 @@ const Quiz: React.FC<MeuComponenteProps> = ({ questions }) => {
           <span className="total-question">/{questions.length}</span>
           <h2>{questao}</h2>
           <ul>
-            {alternativas.map((resposta, index) => (
-              <li
-                key={id}
-                onClick={() => handleClick(resposta, index)}
-                className={respostaId === index ? "selecione-resposta" : ""}
-              >
-                {resposta}
-              </li>
-            ))}
+            {alternativas.map((resposta) => {
+              return (
+                <li
+                  key={id}
+                  onClick={() => handleClick(resposta, id)}
+                  className={respostaId === id ? "selecione-resposta" : ""}
+                >
+                  {resposta}
+                </li>
+              );
+            })}
           </ul>
           <div className="footer">
             <button onClick={handleNext} disabled={respostaId === ""}>

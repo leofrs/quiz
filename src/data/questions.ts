@@ -1,5 +1,5 @@
 type Question = {
-  id: number;
+  id: number | string;
   questao: string;
   alternativas: string[];
   type: string;
