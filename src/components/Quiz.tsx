@@ -7,16 +7,16 @@ type MeuComponenteProps = {
 
 const Quiz: React.FC<MeuComponenteProps> = ({ questions }) => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
-  const [respostaId, setRespostaId] = useState<number | string>();
-  const [resposta, setResposta] = useState<boolean>(false);
+  const [respostaId, setRespostaId] = useState<number | string>("");
+  const [resposta, setResposta] = useState<boolean>(true);
   const [result, setResult] = useState<Result>(resultInitialState);
   const [showResult, setShowResult] = useState<boolean>(false);
 
   const { id, questao, alternativas, respostaCorreta } =
     questions[currentQuestion];
 
-  const handleClick = (resposta: string, id: number | string) => {
-    setRespostaId(id);
+  const handleClick = (resposta: string, index: number | string) => {
+    setRespostaId(index);
     if (resposta === respostaCorreta) {
       setResposta(true);
     } else {
@@ -25,6 +25,7 @@ const Quiz: React.FC<MeuComponenteProps> = ({ questions }) => {
   };
 
   const handleNext = () => {
+    setResposta(false);
     setRespostaId("");
     setResult((prev) => {
       return resposta
@@ -38,6 +39,7 @@ const Quiz: React.FC<MeuComponenteProps> = ({ questions }) => {
             respostaErrada: prev.respostaErrada + 1,
           };
     });
+
     if (currentQuestion !== questions.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
     } else {
@@ -59,12 +61,12 @@ const Quiz: React.FC<MeuComponenteProps> = ({ questions }) => {
           <span className="total-question">/{questions.length}</span>
           <h2>{questao}</h2>
           <ul>
-            {alternativas.map((resposta) => {
+            {alternativas.map((resposta, index) => {
               return (
                 <li
                   key={id}
-                  onClick={() => handleClick(resposta, id)}
-                  className={respostaId === id ? "selecione-resposta" : ""}
+                  onClick={() => handleClick(resposta, index)}
+                  className={respostaId === index ? "selecione-resposta" : ""}
                 >
                   {resposta}
                 </li>

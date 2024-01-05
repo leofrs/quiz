@@ -20,7 +20,7 @@ export const Quizz: QuizzType = {
   questions: [
     {
       id: 1,
-      questao: "Quando o brasil foi descoberto",
+      questao: "Quando o brasil foi descoberto ?",
       alternativas: ["2000", "1500", "1457", "2004"],
       type: "MCQs",
       respostaCorreta: "1500",
@@ -28,6 +28,27 @@ export const Quizz: QuizzType = {
     {
       id: 2,
       questao: "Neymar é ?",
+      alternativas: ["pagodeiro", "funkeiro", "jogador", "piloto"],
+      type: "MCQs",
+      respostaCorreta: "jogador",
+    },
+    {
+      id: 3,
+      questao: "Oliver tsubasa é ?",
+      alternativas: ["pagodeiro", "funkeiro", "jogador", "piloto"],
+      type: "MCQs",
+      respostaCorreta: "jogador",
+    },
+    {
+      id: 4,
+      questao: "airton senna é ?",
+      alternativas: ["pagodeiro", "funkeiro", "jogador", "piloto"],
+      type: "MCQs",
+      respostaCorreta: "jogador",
+    },
+    {
+      id: 5,
+      questao: "ronaldinho é ?",
       alternativas: ["pagodeiro", "funkeiro", "jogador", "piloto"],
       type: "MCQs",
       respostaCorreta: "jogador",
