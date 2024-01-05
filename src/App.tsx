@@ -1,9 +1,10 @@
 import Quiz from "./components/Quiz";
+import { Quizz } from "./data/questions";
 
 function App() {
   return (
     <>
-      <Quiz />
+      <Quiz questions={Quizz.questions} />
     </>
   );
 }
